@@ -25,6 +25,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.chemistry.opencmis.client.api.Session;
 
 import com.manning.cmis.theblend.session.OpenCMISSessionFactory;
+import java.io.File;
 
 /**
  * Index page.

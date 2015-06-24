@@ -15,6 +15,7 @@
  */
 package com.manning.cmis.theblend.util;
 
+import java.io.File;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -27,6 +28,9 @@ import org.owasp.esapi.ESAPI;
 import org.owasp.esapi.errors.EncodingException;
 
 public class HTMLHelper {
+	static {
+		
+	}
 
 	public static String format(Object value) {
 		if (value == null) {
