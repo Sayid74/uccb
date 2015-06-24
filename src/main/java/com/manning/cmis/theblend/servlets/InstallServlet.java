@@ -52,20 +52,19 @@ public class InstallServlet extends AbstractTheBlendServlet {
 		// create an OpenCMIS session
 		final Session session;
 		try {
-			session = OpenCMISSessionFactory.createOpenCMISSession(username,
-					password);
+			session = OpenCMISSessionFactory.createOpenCMISSession(username, password);
 		} catch (Exception e) {
 			error("Could not create session!", e, request, response);
 			return;
 		}
 
-		getServletContext().getRealPath("/WEB-INF/data.zip");
+		String fn = getServletContext().getRealPath("/WEB-INF/data.zip");
+		System.out.append(">>> " + fn);
 
 		// open data Zip file
 		final ZipFile zipFile;
 		try {
-			zipFile = new ZipFile(getServletContext().getRealPath(
-					"/WEB-INF/data.zip"));
+			zipFile = new ZipFile(getServletContext().getRealPath("/WEB-INF/data.zip"));
 		} catch (Exception e) {
 			error("Could not open data file!", e, request, response);
 			return;
@@ -84,7 +83,7 @@ public class InstallServlet extends AbstractTheBlendServlet {
 
 	public static class Progress implements ImportProgress {
 
-		private PrintWriter pw;
+		private final PrintWriter pw;
 
 		public Progress(PrintWriter pw) {
 			this.pw = pw;

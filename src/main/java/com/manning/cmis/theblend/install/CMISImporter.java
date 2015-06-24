@@ -114,7 +114,7 @@ public class CMISImporter {
 	public void runImport(ImportProgress progress) {
 		progress.startImport();
 
-		Set<String> processed = new HashSet<String>();
+		Set<String> processed = new HashSet<>();
 
 		try {
 			// create the application root
@@ -122,8 +122,7 @@ public class CMISImporter {
 
 			// iterate over the Zip file
 			@SuppressWarnings("unchecked")
-			Enumeration<ZipEntry> entryEnumeration = (Enumeration<ZipEntry>) zipFile
-					.entries();
+			Enumeration<ZipEntry> entryEnumeration = (Enumeration<ZipEntry>) zipFile.entries();
 
 			while (entryEnumeration.hasMoreElements()) {
 				ZipEntry entry = entryEnumeration.nextElement();
@@ -190,13 +189,21 @@ public class CMISImporter {
 	 * Creates the application root folder.
 	 */
 	private void createApplicationRoot() {
+		System.out.println(">>> application root: " + applicationRoot);
 		String[] path = applicationRoot.split("/");
 
 		if (path.length < 2) {
 			return;
 		}
 
-		ObjectId parent = session.getRootFolder();
+		ObjectId parent = null;
+		try {
+			parent = session.getRootFolder();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 
 		StringBuilder sb = new StringBuilder();
 		for (int i = 1; i < path.length; i++) {
@@ -207,7 +214,7 @@ public class CMISImporter {
 				parent = session.getObjectByPath(sb.toString(),
 						IMPORT_OPERATION_CONTEXT);
 			} catch (CmisObjectNotFoundException notFound) {
-				Map<String, Object> properties = new HashMap<String, Object>();
+				Map<String, Object> properties = new HashMap<>();
 				properties.put(PropertyIds.NAME, path[i]);
 				properties.put(PropertyIds.OBJECT_TYPE_ID,
 						BaseTypeId.CMIS_FOLDER.value());

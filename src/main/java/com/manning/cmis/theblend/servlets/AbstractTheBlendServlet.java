@@ -220,7 +220,7 @@ public abstract class AbstractTheBlendServlet extends HttpServlet {
 			}
 
 			// create folder
-			Map<String, Object> properties = new HashMap<String, Object>();
+			Map<String, Object> properties = new HashMap<>();
 			properties.put(PropertyIds.OBJECT_TYPE_ID, "cmis:folder");
 			properties.put(PropertyIds.NAME, path.substring(x + 1));
 
@@ -231,6 +231,12 @@ public abstract class AbstractTheBlendServlet extends HttpServlet {
 
 	/**
 	 * Dispatches to a JSP page.
+	 * @param jsp
+	 * @param title
+	 * @param request
+	 * @param response
+	 * @throws javax.servlet.ServletException
+	 * @throws java.io.IOException
 	 */
 	protected void dispatch(String jsp, String title,
 			HttpServletRequest request, HttpServletResponse response)
@@ -245,6 +251,11 @@ public abstract class AbstractTheBlendServlet extends HttpServlet {
 
 	/**
 	 * Redirect to another page.
+	 * @param url
+	 * @param request
+	 * @param response
+	 * @throws javax.servlet.ServletException
+	 * @throws java.io.IOException
 	 */
 	protected void redirect(String url, HttpServletRequest request,
 			HttpServletResponse response) throws ServletException,
@@ -255,6 +266,11 @@ public abstract class AbstractTheBlendServlet extends HttpServlet {
 
 	/**
 	 * Forwards to an JSP that displays the given error message.
+	 * @param message
+	 * @param t
+	 * @param request
+	 * @param response
+	 * @throws javax.servlet.ServletException
 	 */
 	protected void error(String message, Throwable t,
 			HttpServletRequest request, HttpServletResponse response)
@@ -270,17 +286,14 @@ public abstract class AbstractTheBlendServlet extends HttpServlet {
 	/**
 	 * Gets a string parameter.
 	 */
-	protected String getStringParameter(HttpServletRequest request,
-			String name) {
+	protected String getStringParameter(HttpServletRequest request, String name) {
 		return request.getParameter(name);
 	}
 
 	/**
 	 * Gets a string parameter and throws an exception if it is not set.
 	 */
-	protected String getRequiredStringParameter(
-			HttpServletRequest request, String name)
-			throws TheBlendException {
+	protected String getRequiredStringParameter( HttpServletRequest request, String name) throws TheBlendException {
 		String value = request.getParameter(name);
 
 		if (value == null || value.length() == 0) {

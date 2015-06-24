@@ -29,18 +29,18 @@ public class OpenCMISSessionFactory {
 	/**
 	 * Creates a new OpenCMIS session with the provided username and
 	 * password.
+	 * @param username
+	 * @param password
+	 * @return 
 	 */
-	public static Session createOpenCMISSession(String username,
-			String password) {
-		Map<String, String> parameter = new HashMap<String, String>();
+	public static Session createOpenCMISSession(String username, String password) {
+		Map<String, String> parameter = new HashMap<>();
 
 		parameter.put(SessionParameter.USER, username);
 		parameter.put(SessionParameter.PASSWORD, password);
 
-		parameter.put(SessionParameter.ATOMPUB_URL,
-				"http://localhost:8081/inmemory/atom");
-		parameter.put(SessionParameter.BINDING_TYPE,
-				BindingType.ATOMPUB.value());
+		parameter.put(SessionParameter.ATOMPUB_URL, "http://localhost:8081/cmisatom11");
+		parameter.put(SessionParameter.BINDING_TYPE, BindingType.ATOMPUB.value());
 		parameter.put(SessionParameter.REPOSITORY_ID, "A1");
 
 		SessionFactory factory = SessionFactoryImpl.newInstance();
@@ -50,6 +50,7 @@ public class OpenCMISSessionFactory {
 
 	/**
 	 * Returns the application root folder.
+	 * @return 
 	 */
 	public static String getApplicationRootFolderPath() {
 		return "/blend";
