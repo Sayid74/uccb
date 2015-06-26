@@ -55,8 +55,8 @@ public class OpenCMISSessionFactory {
 
 		//Sayid Modified
 		Session s = repositories.get(0).createSession();
-		Folder f = s.getRootFolder();
-		System.out.print(f);
+//		Folder f = s.getRootFolder();
+//		System.out.print(f);
 		return s;
 		//return factory.createSession(parameter);
 	}

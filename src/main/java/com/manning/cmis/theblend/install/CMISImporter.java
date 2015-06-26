@@ -116,10 +116,11 @@ public class CMISImporter {
 		progress.startImport();
 
 		Set<String> processed = new HashSet<>();
+		
+		// create the application root
+		createApplicationRoot();
 
 		try {
-			// create the application root
-			createApplicationRoot();
 
 			// iterate over the Zip file
 			@SuppressWarnings("unchecked")
@@ -197,13 +198,13 @@ public class CMISImporter {
 			return;
 		}
 
-		Folder parent = null;
+		Folder parent;
 		try {
 			parent = session.getRootFolder();
 		}
-		catch(Exception e)
+		catch(CmisObjectNotFoundException e)
 		{
-			e.printStackTrace();
+			parent = null;
 		}
 
 		StringBuilder sb = new StringBuilder();
