@@ -36,6 +36,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
+import org.apache.chemistry.opencmis.client.api.Folder;
 
 import org.apache.chemistry.opencmis.client.api.ObjectId;
 import org.apache.chemistry.opencmis.client.api.ObjectType;
@@ -196,7 +197,7 @@ public class CMISImporter {
 			return;
 		}
 
-		ObjectId parent = null;
+		Folder parent = null;
 		try {
 			parent = session.getRootFolder();
 		}
@@ -211,15 +212,16 @@ public class CMISImporter {
 			sb.append(path[i]);
 
 			try {
-				parent = session.getObjectByPath(sb.toString(),
+				ObjectId o = session.getObjectByPath(sb.toString(),
 						IMPORT_OPERATION_CONTEXT);
+				parent = (Folder) o;
 			} catch (CmisObjectNotFoundException notFound) {
 				Map<String, Object> properties = new HashMap<>();
 				properties.put(PropertyIds.NAME, path[i]);
 				properties.put(PropertyIds.OBJECT_TYPE_ID,
 						BaseTypeId.CMIS_FOLDER.value());
 
-				parent = session.createFolder(properties, parent);
+				parent = ((Folder) parent).createFolder(properties);
 			}
 		}
 	}

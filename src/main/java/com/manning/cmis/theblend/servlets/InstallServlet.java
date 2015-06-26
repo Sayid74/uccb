@@ -28,6 +28,8 @@ import org.apache.chemistry.opencmis.client.api.Session;
 import com.manning.cmis.theblend.install.CMISImporter;
 import com.manning.cmis.theblend.install.CMISImporter.ImportProgress;
 import com.manning.cmis.theblend.session.OpenCMISSessionFactory;
+import java.util.List;
+import org.apache.chemistry.opencmis.client.api.Repository;
 
 public class InstallServlet extends AbstractTheBlendServlet {
 	private static final long serialVersionUID = 1L;

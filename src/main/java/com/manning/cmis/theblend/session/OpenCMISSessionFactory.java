@@ -16,7 +16,10 @@
 package com.manning.cmis.theblend.session;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import org.apache.chemistry.opencmis.client.api.Folder;
+import org.apache.chemistry.opencmis.client.api.Repository;
 
 import org.apache.chemistry.opencmis.client.api.Session;
 import org.apache.chemistry.opencmis.client.api.SessionFactory;
@@ -45,7 +48,17 @@ public class OpenCMISSessionFactory {
 
 		SessionFactory factory = SessionFactoryImpl.newInstance();
 
-		return factory.createSession(parameter);
+		List<Repository> repositories = factory.getRepositories(parameter);
+		for (Repository r : repositories) {
+			System.out.println("Found repository: " + r.getName());
+		}
+
+		//Sayid Modified
+		Session s = repositories.get(0).createSession();
+		Folder f = s.getRootFolder();
+		System.out.print(f);
+		return s;
+		//return factory.createSession(parameter);
 	}
 
 	/**
