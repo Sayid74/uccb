@@ -15,7 +15,7 @@ import javax.servlet.ServletContextListener;
  *
  * @author Sayid
  */
-public class NewServletListener implements ServletContextListener {
+public class UccbListener implements ServletContextListener {
 
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
@@ -31,6 +31,6 @@ public class NewServletListener implements ServletContextListener {
 
 	@Override
 	public void contextDestroyed(ServletContextEvent sce) {
-		System.clearProperty("org.owasp.esapi.resoures");
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 }

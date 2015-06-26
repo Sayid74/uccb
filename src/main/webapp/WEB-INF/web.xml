@@ -6,7 +6,7 @@
     </listener>
     <listener>
         <description>ServletContextListener</description>
-        <listener-class>com.ucap.uccb.app.NewServletListener</listener-class>
+        <listener-class>com.ucap.uccb.app.UccbListener</listener-class>
     </listener>
     <servlet>
         <servlet-name>IndexServlet</servlet-name>
