@@ -217,6 +217,8 @@ public class CMISImporter {
 						IMPORT_OPERATION_CONTEXT);
 				parent = (Folder) o;
 			} catch (CmisObjectNotFoundException notFound) {
+				if (parent == null) return;
+
 				Map<String, Object> properties = new HashMap<>();
 				properties.put(PropertyIds.NAME, path[i]);
 				properties.put(PropertyIds.OBJECT_TYPE_ID,

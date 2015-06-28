@@ -60,9 +60,6 @@ public class InstallServlet extends AbstractTheBlendServlet {
 			return;
 		}
 
-		String fn = getServletContext().getRealPath("/WEB-INF/data.zip");
-		System.out.append(">>> " + fn);
-
 		// open data Zip file
 		final ZipFile zipFile;
 		try {
